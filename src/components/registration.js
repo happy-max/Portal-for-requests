@@ -20,10 +20,6 @@ const Registration = () => {
             layout="vertical"
             requiredMark={false}
             // onFinish={onFinish}
-            style={{
-                width: '500px',
-                borderRadius: '10px'
-            }}
             size='large'
         >
             <h2>Registration</h2>

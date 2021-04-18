@@ -1,7 +1,7 @@
 import React from 'react'
 import {Form, Input, Button} from 'antd'
 
-const Login = () => {
+const AddRequest = () => {
     return (
         <Form
             name="basic"
@@ -11,35 +11,35 @@ const Login = () => {
             // onFinish={onFinish}
             size='large'
         >
-            <h2>Login</h2>
+            <h2>Add request</h2>
             <Form.Item
-                label="Email"
-                name="Email"
+                label="Theme"
+                name="Theme"
                 rules={[{
-                    required: true, type: 'email', validateTrigger: 'onSubmit'
+                    required: true,  validateTrigger: 'onSubmit'
                 }]}
             >
-                <Input placeholder="Email"
+                <Input placeholder="theme"
                        maxLength={30}/>
             </Form.Item>
 
             <Form.Item
-                label="Password"
-                name="password"
+                label="Description"
+                name="Description"
                 rules={[{
                     required: true, validateTrigger: 'onSubmit'
                 }]}
             >
-                <Input.Password placeholder="Password" maxLength={30}/>
+                <Input placeholder="description" maxLength={30}/>
             </Form.Item>
 
             <Form.Item style={{textAlign: 'center'}}>
                 <Button type="primary" htmlType="submit">
-                    Login
+                    Add request
                 </Button>
             </Form.Item>
 
         </Form>
     )
 }
-export default Login
+export default AddRequest
