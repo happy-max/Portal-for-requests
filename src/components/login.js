@@ -37,7 +37,6 @@ const Login = () => {
                 <Input.Password placeholder="Password" maxLength={30}/>
             </Form.Item>
 
-
             <Form.Item style={{textAlign: 'center'}}>
                 <Button type="primary" htmlType="submit">
                     Login
