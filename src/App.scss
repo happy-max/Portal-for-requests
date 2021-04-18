@@ -1,6 +1,27 @@
 @import '~antd/dist/antd.css';
-.App{
-    text-align: center;
 
+.App {
+  h2 {
+    text-align: center;
+  }
+
+  .ant-form {
+    padding: 30px 50px 10px;
+    margin: 20px auto;
+    background-color: #fff;
+    .ant-row{
+      margin-bottom: 17px;
+    }
+  }
+
+  .ant-form-large .ant-form-item-label > label {
+    font-weight: 500;
+    height: 30px;
+    font-size: 14px;
+  }
+
+  button {
+    margin-top: 5px;
+  }
 }
 

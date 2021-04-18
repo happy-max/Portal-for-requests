@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.scss'
+import {BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom'
+import Registration from './components/registration'
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div className="App">
+            <Router>
+                    {/*<Header/>*/}
+
+                    <Switch>
+                        {/*<Route path='/' render={() => <h2>Welcome to StarDB</h2>} exact/>*/}
+                        <Route path='/registration' component={Registration}/>
+
+
+                    </Switch>
+            </Router>
+        </div>
+    )
 }
 
-export default App;
+export default App
