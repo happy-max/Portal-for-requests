@@ -5,6 +5,7 @@ import Registration from './components/registration'
 import Login from './components/login'
 import Header from './components/header'
 import AddRequest from './components/add-request'
+import MyRequest from './components/my-request'
 
 function App() {
     const [isLoggedIn, setIsLoggedIn] = useState(true)
@@ -13,9 +14,9 @@ function App() {
             <Router>
                     <Header isLoggedIn={isLoggedIn}/>
                     <Switch>
-                        {/*<Route path='/' render={() => <h2>Welcome to main</h2>} exact/>*/}
                         <Route path='/registration' component={Registration}/>
                         <Route path='/login' component={Login}/>
+                        <Route path='/my-requests' component={MyRequest}/>
                         <Route path='/' component={AddRequest}/>
 
                     </Switch>

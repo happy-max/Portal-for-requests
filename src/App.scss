@@ -47,5 +47,17 @@
     }
 
   }
+  .ag-theme-alpine{
+    width: 800px;
+    height: 80vh;
+    margin: 30px auto;
+    .ag-center-cols-container{
+      width: 100%!important;
+    }
+  }
+}
+
+.ag-row:hover{
+  cursor: pointer;
 }
 

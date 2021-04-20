@@ -6,7 +6,7 @@ const Header = ({isLoggedIn}) => {
 
     return (
         <div className='menu'>
-                <Link to="/main">Main</Link>
+                <Link to="/">Main</Link>
                 <Link to="/my-requests">My requests</Link>
                 <Link to="/login">Login</Link>
                 <Link to="/registration">Registration</Link>
