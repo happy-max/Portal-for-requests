@@ -1,7 +1,17 @@
 import React from 'react'
-import {Form, Input, Button} from 'antd'
+import {Form, Input, Button, DatePicker} from 'antd'
 
 const AddRequest = () => {
+
+//     let promise = new Promise(function(resolve, reject) {
+//   setTimeout(() => resolve("Your request added!"), 1000);
+// });
+
+
+// promise.then(
+//   result => alert(result),
+//   error => alert(error) 
+// );
     return (
         <Form
             name="basic"
@@ -31,6 +41,18 @@ const AddRequest = () => {
                 }]}
             >
                 <Input placeholder="description" maxLength={30}/>
+            </Form.Item>
+            <Form.Item name="DatePicker" label="DatePicker"
+                       rules={[
+                           {
+                               type: 'object',
+                               required: true,
+                               message: 'Please select time!',
+                               validateTrigger: 'onSubmit'
+                           }
+                       ]}
+            >
+                <DatePicker/>
             </Form.Item>
 
             <Form.Item style={{textAlign: 'center'}}>

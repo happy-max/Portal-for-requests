@@ -1,8 +1,14 @@
-import React, {useState} from 'react'
+import React, {useContext, useState} from 'react'
 import {Form, Input, Button, DatePicker, AutoComplete} from 'antd'
+import {useHistory} from "react-router-dom"
+import { ContactContext } from './store'
 
-const Registration = () => {
+
+const Registration = ({ setIsLoggedIn, setCurrentUser}) => {
     const [result, setResult] = useState([])
+    const [state, dispatch] = useContext(ContactContext)
+    let history = useHistory()
+
 
     const handleSearch = (value) => {
         let res = []
@@ -13,19 +19,40 @@ const Registration = () => {
         }
         setResult(res)
     }
+
+    const onFinishRegistration = (e) => {
+        const data = state.contacts.find(({email}) => email === e.email)
+
+
+        if (data) {
+            alert('This Email already exists')
+        } else {
+            dispatch({
+                type: "ADD_CONTACT",
+                payload: e
+            })
+
+            localStorage.setItem('allUsers',  JSON.stringify(state.contacts))
+
+            setIsLoggedIn(true)
+            setCurrentUser(e)
+           history.push("/")
+        }
+    }
+
     return (
         <Form
             name="basic"
             initialValues={{remember: true}}
             layout="vertical"
             requiredMark={false}
-            // onFinish={onFinish}
+            onFinish={onFinishRegistration}
             size='large'
         >
             <h2>Registration</h2>
             <Form.Item
                 label="Email"
-                name="Email"
+                name="email"
                 rules={[{
                     required: true, type: 'email', validateTrigger: 'onSubmit'
                 }]}
@@ -41,7 +68,6 @@ const Registration = () => {
                         </AutoComplete.Option>
                     ))}
                 </AutoComplete>
-                {/*<Input />*/}
             </Form.Item>
 
             <Form.Item
@@ -54,18 +80,7 @@ const Registration = () => {
                 <Input.Password maxLength={30} placeholder="Password"/>
             </Form.Item>
 
-            <Form.Item name="DatePicker" label="DatePicker"
-                       rules={[
-                           {
-                               type: 'object',
-                               required: true,
-                               message: 'Please select time!',
-                               validateTrigger: 'onSubmit'
-                           }
-                       ]}
-            >
-                <DatePicker/>
-            </Form.Item>
+
 
             <Form.Item style={{textAlign: 'center'}}>
                 <Button type="primary" htmlType="submit">
@@ -76,4 +91,5 @@ const Registration = () => {
         </Form>
     )
 }
+
 export default Registration

@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
-import {Link, Redirect} from 'react-router-dom'
-import {Menu} from 'antd'
+import React from 'react'
+import {Link} from 'react-router-dom'
 
-const Header = ({isLoggedIn}) => {
+
+const Header = ({isLoggedIn, setIsLoggedIn}) => {
 
     return (
         <div className='menu'>
@@ -12,8 +12,8 @@ const Header = ({isLoggedIn}) => {
                 <Link to="/registration">Registration</Link>
             {
                 isLoggedIn
-                    ? <Link to="/login">Exit</Link>
-                    : <Link disabled>Exit</Link>
+                    ? <Link onClick={()=>setIsLoggedIn(null)} to="/login">Exit</Link>
+                    : <Link  to="/login" disabled>Exit</Link>
                 }
 
         </div>
