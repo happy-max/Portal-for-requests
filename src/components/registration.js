@@ -22,23 +22,22 @@ const Registration = ({ setIsLoggedIn, setCurrentUser}) => {
 
     const onFinishRegistration = (e) => {
         const data = state.contacts.find(({email}) => email === e.email)
-
-
+        let value = {...e, notes: []}
         if (data) {
             alert('This Email already exists')
         } else {
+            localStorage.setItem('allUsers',  JSON.stringify([...state.contacts, value]))
             dispatch({
                 type: "ADD_CONTACT",
-                payload: e
+                payload: value
             })
 
-            localStorage.setItem('allUsers',  JSON.stringify(state.contacts))
-
             setIsLoggedIn(true)
-            setCurrentUser(e)
+            setCurrentUser(value)
            history.push("/")
         }
     }
+
 
     return (
         <Form

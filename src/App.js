@@ -8,27 +8,33 @@ import AddRequest from './components/add-request'
 import MyRequest from './components/my-request'
 import {ContactContext} from "./components/store"
 
-
 function App() {
 
     const [isLoggedIn, setIsLoggedIn] = useState(null)
     const [currentUser, setCurrentUser] = useState(null)
     const [state, dispatch] = useContext(ContactContext)
-    useEffect(()=>{
-        let all = localStorage.getItem('allUsers')
-        console.log(all)
-        if(all){ dispatch({ type: "UPDATE_CONTACT", payload: all }) }
-        let user = JSON.parse(localStorage.getItem('user')) || ''
+
+    useEffect(() => {
+        let all = JSON.parse(localStorage.getItem('allUsers'))
+        if (all) {dispatch({type: "UPDATE_CONTACT", payload: all})}
+        let user = JSON.parse(localStorage.getItem('user'))
         setIsLoggedIn(!!user)
         setCurrentUser(user)
-    },[])
-    useEffect(()=> {
-        if(isLoggedIn){
+    }, [])
+
+    useEffect(() => {
+        if (isLoggedIn && currentUser) {
             localStorage.setItem('user', JSON.stringify(currentUser))
-        }else{
+            dispatch({type: "DEL_CONTACT", payload: (currentUser.email)})
+            dispatch({type: "ADD_CONTACT", payload: currentUser})
+        } else {
             localStorage.setItem('user', JSON.stringify(null))
         }
     }, [currentUser, isLoggedIn])
+
+    useEffect(()=>{
+        localStorage.setItem('allUsers',  JSON.stringify(state.contacts))
+    }, [state])
 
     return (
         <div className="App">
@@ -46,7 +52,9 @@ function App() {
                         isLoggedIn ?
                             (
                                 <>
-                                    <Route path='/' component={AddRequest} exact/>
+                                    <Route path='/' render={() => (<AddRequest setCurrentUser={setCurrentUser}
+                                                                               currentUser={currentUser} />)}
+                                           exact/>
                                     <Route path='/my-requests' component={MyRequest} exact/>
                                 </>
                             )

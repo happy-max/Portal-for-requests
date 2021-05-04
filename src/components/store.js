@@ -4,7 +4,7 @@ export const ContactContext = createContext()
 
 const initialState = {
     contacts: [
-        {email: 'email@web.ru', password: '1234qwe,.'}
+
     ],
 }
 
@@ -18,10 +18,11 @@ const reducer = (state, action) => {
             return {
                 contacts: [...state.contacts, action.payload]
             }
+
         case "DEL_CONTACT":
             return {
                 contacts: state.contacts.filter(
-                    contact => contact.id !== action.payload
+                    contact => contact.email !== action.payload
                 )
             }
         default:

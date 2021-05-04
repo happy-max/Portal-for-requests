@@ -10,6 +10,7 @@ const Login = ({ setIsLoggedIn, setCurrentUser}) => {
     const onFinishLogin = (e) => {
         const data = state.contacts.find(({email, password}) => email === e.email
             && password === e.password)
+        console.log(state)
 
         if (data) {
             setIsLoggedIn(true)

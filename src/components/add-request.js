@@ -1,24 +1,31 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import {Form, Input, Button, DatePicker} from 'antd'
+import {ContactContext} from "./store"
 
-const AddRequest = () => {
+const AddRequest = ({setCurrentUser, currentUser}) => {
+    const [state, dispatch] = useContext(ContactContext)
 
-//     let promise = new Promise(function(resolve, reject) {
-//   setTimeout(() => resolve("Your request added!"), 1000);
-// });
+    function onFinishAddRequest(notes){
+        let data = [...currentUser.notes, notes]
 
+        setCurrentUser(prevState=>({...prevState, notes: data}))
 
-// promise.then(
-//   result => alert(result),
-//   error => alert(error) 
-// );
+        let promise = new Promise(function(resolve, reject) {
+            setTimeout(() => resolve("Your request added!"), 1000)
+        })
+        promise.then(
+            result => alert(result),
+            error => alert(error)
+        )
+    }
+
     return (
         <Form
             name="basic"
             initialValues={{remember: true}}
             layout="vertical"
             requiredMark={false}
-            // onFinish={onFinish}
+            onFinish={onFinishAddRequest}
             size='large'
         >
             <h2>Add request</h2>
