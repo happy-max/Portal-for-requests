@@ -3,9 +3,7 @@ import React, { useReducer, createContext } from "react"
 export const ContactContext = createContext()
 
 const initialState = {
-    contacts: [
-
-    ],
+    contacts: [],
 }
 
 const reducer = (state, action) => {

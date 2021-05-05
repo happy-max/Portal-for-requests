@@ -1,14 +1,16 @@
-import React, {useContext} from 'react'
+import React from 'react'
 import {Form, Input, Button, DatePicker} from 'antd'
-import {ContactContext} from "./store"
 
 const AddRequest = ({setCurrentUser, currentUser}) => {
-    const [state, dispatch] = useContext(ContactContext)
+    let [form] = Form.useForm()
 
     function onFinishAddRequest(notes){
-        let data = [...currentUser.notes, notes]
-
+        const {theme, description} = notes
+        let date = new Date().toUTCString()
+        let request = {theme, description, date}
+        let data = [...currentUser.notes, request]
         setCurrentUser(prevState=>({...prevState, notes: data}))
+        form.resetFields()
 
         let promise = new Promise(function(resolve, reject) {
             setTimeout(() => resolve("Your request added!"), 1000)
@@ -21,17 +23,18 @@ const AddRequest = ({setCurrentUser, currentUser}) => {
 
     return (
         <Form
+            form={form}
             name="basic"
-            initialValues={{remember: true}}
             layout="vertical"
             requiredMark={false}
             onFinish={onFinishAddRequest}
             size='large'
+
         >
             <h2>Add request</h2>
             <Form.Item
                 label="Theme"
-                name="Theme"
+                name="theme"
                 rules={[{
                     required: true,  validateTrigger: 'onSubmit'
                 }]}
@@ -42,7 +45,7 @@ const AddRequest = ({setCurrentUser, currentUser}) => {
 
             <Form.Item
                 label="Description"
-                name="Description"
+                name="description"
                 rules={[{
                     required: true, validateTrigger: 'onSubmit'
                 }]}

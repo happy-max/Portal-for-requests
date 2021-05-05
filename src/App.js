@@ -16,7 +16,9 @@ function App() {
 
     useEffect(() => {
         let all = JSON.parse(localStorage.getItem('allUsers'))
-        if (all) {dispatch({type: "UPDATE_CONTACT", payload: all})}
+        if (all) {
+            dispatch({type: "UPDATE_CONTACT", payload: all})
+        }
         let user = JSON.parse(localStorage.getItem('user'))
         setIsLoggedIn(!!user)
         setCurrentUser(user)
@@ -32,8 +34,8 @@ function App() {
         }
     }, [currentUser, isLoggedIn])
 
-    useEffect(()=>{
-        localStorage.setItem('allUsers',  JSON.stringify(state.contacts))
+    useEffect(() => {
+        localStorage.setItem('allUsers', JSON.stringify(state.contacts))
     }, [state])
 
     return (
@@ -53,9 +55,12 @@ function App() {
                             (
                                 <>
                                     <Route path='/' render={() => (<AddRequest setCurrentUser={setCurrentUser}
-                                                                               currentUser={currentUser} />)}
+                                                                               currentUser={currentUser}/>)}
                                            exact/>
-                                    <Route path='/my-requests' component={MyRequest} exact/>
+                                    <Route path='/my-requests'
+                                           render={() => (
+                                               <MyRequest currentUser={currentUser} setCurrentUser={setCurrentUser}/>)}
+                                           exact/>
                                 </>
                             )
                             : <Redirect to='/login'/>
