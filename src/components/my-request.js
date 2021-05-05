@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { AgGridColumn, AgGridReact } from 'ag-grid-react'
-
 import 'ag-grid-community/dist/styles/ag-grid.css'
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css'
 import SelectedRequest from './selected-request'
@@ -36,7 +35,6 @@ const MyRequest = ({currentUser, setCurrentUser}) => {
                 <AgGridColumn field="date" flex={1} ></AgGridColumn>
                 <AgGridColumn field="theme"flex={1}></AgGridColumn>
             </AgGridReact>
-         
         </div>
            <SelectedRequest setIsModalVisible={setIsModalVisible}
             isModalVisible={isModalVisible} selectedRow={selectedRow}
@@ -47,7 +45,6 @@ const MyRequest = ({currentUser, setCurrentUser}) => {
                    onCancel={()=>setIsDeleteVisible(false)}
             > <h2>Do you want to delete this request?</h2></Modal>
            </>
-
     )
 }
 

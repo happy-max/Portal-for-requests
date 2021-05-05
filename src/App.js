@@ -7,6 +7,7 @@ import Header from './components/header'
 import AddRequest from './components/add-request'
 import MyRequest from './components/my-request'
 import {ContactContext} from "./components/store"
+import Weather from "./components/weather"
 
 function App() {
 
@@ -54,6 +55,8 @@ function App() {
                         isLoggedIn ?
                             (
                                 <>
+                                    <Route path='/' render={() => <Weather/>}
+                                           exact/>
                                     <Route path='/' render={() => (<AddRequest setCurrentUser={setCurrentUser}
                                                                                currentUser={currentUser}/>)}
                                            exact/>
@@ -63,7 +66,9 @@ function App() {
                                            exact/>
                                 </>
                             )
-                            : <Redirect to='/login'/>
+                            : (
+                                <Redirect to='/login'/>
+                            )
                     }
                 </Switch>
             </Router>

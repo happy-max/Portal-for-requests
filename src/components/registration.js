@@ -1,14 +1,12 @@
 import React, {useContext, useState} from 'react'
 import {Form, Input, Button, DatePicker, AutoComplete} from 'antd'
 import {useHistory} from "react-router-dom"
-import { ContactContext } from './store'
+import {ContactContext} from './store'
 
-
-const Registration = ({ setIsLoggedIn, setCurrentUser}) => {
+const Registration = ({setIsLoggedIn, setCurrentUser}) => {
     const [result, setResult] = useState([])
     const [state, dispatch] = useContext(ContactContext)
     let history = useHistory()
-
 
     const handleSearch = (value) => {
         let res = []
@@ -26,7 +24,7 @@ const Registration = ({ setIsLoggedIn, setCurrentUser}) => {
         if (data) {
             alert('This Email already exists')
         } else {
-            localStorage.setItem('allUsers',  JSON.stringify([...state.contacts, value]))
+            localStorage.setItem('allUsers', JSON.stringify([...state.contacts, value]))
             dispatch({
                 type: "ADD_CONTACT",
                 payload: value
@@ -34,10 +32,9 @@ const Registration = ({ setIsLoggedIn, setCurrentUser}) => {
 
             setIsLoggedIn(true)
             setCurrentUser(value)
-           history.push("/")
+            history.push("/")
         }
     }
-
 
     return (
         <Form
@@ -62,7 +59,7 @@ const Registration = ({ setIsLoggedIn, setCurrentUser}) => {
                     maxLength={30}
                 >
                     {result.map((email) => (
-                        <AutoComplete.Option key={email} value={email} >
+                        <AutoComplete.Option key={email} value={email}>
                             {email}
                         </AutoComplete.Option>
                     ))}
@@ -79,14 +76,11 @@ const Registration = ({ setIsLoggedIn, setCurrentUser}) => {
                 <Input.Password maxLength={30} placeholder="Password"/>
             </Form.Item>
 
-
-
             <Form.Item style={{textAlign: 'center'}}>
                 <Button type="primary" htmlType="submit">
                     Register
                 </Button>
             </Form.Item>
-
         </Form>
     )
 }

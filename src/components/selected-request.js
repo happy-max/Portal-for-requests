@@ -2,7 +2,6 @@ import React  from 'react'
 import {Button, Modal} from 'antd'
 
 const SelectedRequest = ({setIsModalVisible, isModalVisible, selectedRow, onDeleteRow}) => {
-
   return (
     <>
       <Modal title="Selected request" visible={isModalVisible}
